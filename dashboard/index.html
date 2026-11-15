@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Launch Radar — which protocol launches next, and what it is worth</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<a class="skip" href="#board">Skip to the board</a>
+<header class="top">
+  <div class="brand"><span class="pulse" aria-hidden="true"></span> TOKEN LAUNCH RADAR</div>
+  <div class="meta" id="meta">Loading the snapshot…</div>
+</header>
+<main>
+  <section class="lede">
+    <h1>Which protocol launches next, and what is it worth?</h1>
+    <p>Every protocol DefiLlama tracks, ranked by the implied value of its launch. A protocol
+    counts as pre-token only when DefiLlama records no token for it at all: no Gecko id, no
+    symbol. Wrapped, staked and bridged products are left out, because their token already
+    trades somewhere else. The number next to each name is the model, not a promise.</p>
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <section class="spotlight" aria-label="Top three this week">
+    <h2>Top 3 this week</h2>
+    <div class="cards" id="spotlight"></div>
+  </section>
+
+  <section class="controls" aria-label="Filter and search">
+    <input id="q" type="search" placeholder="Search a protocol…" aria-label="Search protocols" autocomplete="off">
+    <select id="category" aria-label="Filter by category"><option value="">All categories</option></select>
+    <select id="chain" aria-label="Filter by chain"><option value="">All chains</option></select>
+    <div class="tabs" role="tablist" aria-label="Board or live tokens">
+      <button id="tab-pre" role="tab" aria-selected="true">Pre-token board</button>
+      <button id="tab-live" role="tab" aria-selected="false">Already live</button>
+    </div>
+  </section>
+
+  <p class="count" id="count"></p>
+  <div class="table-wrap">
+    <table id="board">
+      <thead><tr>
+        <th data-sort="rank" aria-sort="ascending">#</th>
+        <th data-sort="name">Protocol</th>
+        <th data-sort="category">Category</th>
+        <th data-sort="tvl">TVL</th>
+        <th data-sort="change">7d</th>
+        <th data-sort="age">Age</th>
+        <th data-sort="implied">Implied value</th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+
+  <section class="model" id="model" aria-label="How implied value is computed">
+    <h2>How implied value is computed</h2>
+    <p class="formula">implied = TVL × 0.30 × growth × maturity × breadth × category</p>
+    <div class="factors" id="factors"></div>
+    <table class="cats" id="cats">
+      <thead><tr><th>Category</th><th>Multiple</th><th>Why</th></tr></thead>
+      <tbody id="cat-rows"></tbody>
+    </table>
+    <p class="note">Three factors do the work: size (TVL), growth (the last seven days) and
+    maturity (how long the protocol has run with no token). Breadth and category adjust the
+    result by at most +20% and ±15%. Every row below can be checked: open a protocol and the
+    detail view shows each factor and the product, and the page recomputes the number from
+    the snapshot figures. No protocol is ranked by its name.</p>
+  </section>
+
+  <footer>
+    <p>Data: DefiLlama, snapshot 14 Nov 2026. Model radar-2. Implied value is a ranking
+    device, not a price forecast and not financial advice. A protocol can launch, delay,
+    or never launch; farming costs gas and time and may return nothing.</p>
+  </footer>
+</main>
+<dialog id="detail" aria-label="Protocol detail"></dialog>
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
